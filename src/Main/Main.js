@@ -1,12 +1,49 @@
 import React, { Component, Fragment } from "react";
+import db from "../DBdriver";
 import classes from "./Main.css";
+import { db_name } from "../config";
 
 export class Main extends Component {
+  constructor() {
+    super();
+    this.state = { thanks: [] };
+  }
+
+  componentDidMount() {
+    db.table(db_name)
+      .toArray()
+      .then(thanks => {
+        this.setState({ thanks });
+      });
+  }
+
+  sayThankYou = (
+    event,
+    to: string = "twitter",
+    from: string = "John Doe",
+    message: string = "Thanks a lot for your button!"
+  ) => {
+    const thankObj = {
+      to,
+      from,
+      message
+    };
+    db.table(db_name)
+      .add(thankObj)
+      .then(id => {
+        const thanks = [
+          ...this.state.thanks,
+          Object.assign({}, thankObj, { id })
+        ];
+        this.setState({ thanks });
+      });
+  };
+
   render() {
     return (
       <Fragment>
         <div className={classes.grid}>
-          <div className={classes.item} tabIndex="1">
+          <div name="twitter" className={classes.item} onClick={this.sayThankYou} tabIndex="1">
             <div className={classes.box}>
               <div className={classes.diamond}>
                 <span>1</span>
@@ -28,94 +65,6 @@ export class Main extends Component {
                 <span>3</span>
               </div>
               <div className={classes.tooltip}>grid-area: medium</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="4">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>4</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: medium</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="5">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>5</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="6">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>6</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="7">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>7</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="8">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>8</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="9">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>9</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="10">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>10</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="11">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>11</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="12">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>12</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="13">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>13</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
-            </div>
-          </div>
-          <div className={classes.item} tabIndex="14">
-            <div className={classes.box}>
-              <div className={classes.diamond}>
-                <span>14</span>
-              </div>
-              <div className={classes.tooltip}>grid-area: small</div>
             </div>
           </div>
         </div>

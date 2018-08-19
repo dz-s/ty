@@ -1,34 +1,20 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true
-    },
-    "parser": "babel-eslint",
-    "plugins": [
-      "flowtype"
-    ],
-    "extends": [
-        "plugin:flowtype/recommended"
-      ],
-    "parserOptions": {
-        "sourceType": "module"
-    },
-    "rules": {
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "warn"
-        ],
-        "semi": [
-            "warn",
-            "always"
-        ]
-    }
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "plugins": ["flowtype"],
+  "extends": ["plugin:flowtype/recommended"],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["warn"],
+    "semi": ["warn", "always"],
+    "flowtype/no-types-missing-file-annotation": 0
+  }
 }
