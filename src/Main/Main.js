@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import classes from "./css/Main.css";
+import classes from "./Main.css";
 
-export default class Main extends Component {
+export class Main extends Component {
   render() {
     return (
       <Fragment>
