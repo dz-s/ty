@@ -67,6 +67,14 @@ export class Main extends Component {
               <div className={classes.tooltip}>grid-area: medium</div>
             </div>
           </div>
+          <div className={classes.item} tabIndex="3">
+            <div className={classes.box}>
+              <div className={classes.diamond}>
+                <span>3</span>
+              </div>
+              <div className={classes.tooltip}>grid-area: medium</div>
+            </div>
+          </div>
         </div>
       </Fragment>
     );
